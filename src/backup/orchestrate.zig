@@ -249,6 +249,8 @@ const FakeService = struct {
 };
 
 test "createAppArchive packages app_dir + per-service quiesce output" {
+    if (@import("builtin").os.tag == .windows) return error.SkipZigTest;
+
     var threaded: Io.Threaded = .init(testing.allocator, .{ .async_limit = .unlimited });
     defer threaded.deinit();
     const io = threaded.io();

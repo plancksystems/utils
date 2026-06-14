@@ -25,9 +25,9 @@ pub const Kind = enum {
 
 pub const PREFIX: []const u8 = switch (builtin.os.tag) {
     .macos => "com.planck.",
-    .linux => "planck-",
+    .linux => "planck.",
     .windows => "Planck.",
-    else => "planck-",
+    else => "planck.",
 };
 
 pub fn buildLabel(allocator: std.mem.Allocator, kind: Kind, scope: []const u8) ![]u8 {

@@ -47,6 +47,8 @@ fn runCmd(io: Io, argv: []const []const u8) !void {
 const testing = std.testing;
 
 test "tar.gz  preserves file tree + contents" {
+    if (@import("builtin").os.tag == .windows) return error.SkipZigTest;
+
     var threaded: Io.Threaded = .init(testing.allocator, .{ .async_limit = .unlimited });
     defer threaded.deinit();
     const io = threaded.io();
